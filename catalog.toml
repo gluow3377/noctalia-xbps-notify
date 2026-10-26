@@ -1,0 +1,14 @@
+# Catalog Noctalia reads when this repository is added as a plugin source.
+# The entry mirrors xbps-notify/plugin.toml. Keep both in sync, above all
+# `version`: Noctalia offers an update when it differs from the installed one.
+[[plugin]]
+id = "gluow3377/xbps-notify"
+name = "XBPS Update Notifier"
+version = "1.0.0"
+author = "gluow3377"
+license = "MIT"
+icon = "package"
+description = "Notifies when Void Linux (XBPS) updates are available and runs the upgrade in a terminal."
+plugin_api = 26
+tags = ["bar", "panel", "service", "shortcut", "system", "void"]
+dependencies = ["xbps-install", "xbps-query", "sudo", "doas", "pkexec"]

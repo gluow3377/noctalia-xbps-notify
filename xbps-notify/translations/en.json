@@ -1,0 +1,141 @@
+{
+  "actions": {
+    "configure": "configure",
+    "download": "download",
+    "install": "new",
+    "reinstall": "reinstall",
+    "remove": "remove"
+  },
+  "errors": {
+    "exit_code": "xbps-install exited with code {code}.",
+    "no_elevation": "None of sudo, doas or pkexec was found. Install one of them or set a custom upgrade command in the plugin settings.",
+    "no_terminal": "No terminal emulator was found. Set the TERMINAL environment variable or install foot, alacritty or kitty.",
+    "spawn": "Could not start xbps-install.",
+    "stalled": "The check did not finish and was abandoned.",
+    "timeout": "xbps-install did not answer within 60 seconds. Is the network up?"
+  },
+  "notify": {
+    "body": {
+      "one": "{count} package can be updated: {names}",
+      "other": "{count} packages can be updated: {names}"
+    },
+    "title": "Void Linux updates available",
+    "title_error": "XBPS Update Notifier",
+    "title_ok": "Void Linux",
+    "upgraded": "The system has been upgraded.",
+    "xbps_first": "A new version of XBPS is available. It is installed first; the other updates are listed after that."
+  },
+  "panel": {
+    "also": "Also in this upgrade",
+    "available": {
+      "one": "{count} update",
+      "other": "{count} updates"
+    },
+    "check": "Check now",
+    "check_failed_title": "Could not check for updates",
+    "checked_at": "checked at {time}",
+    "checking_detail": "Asking XBPS what a full system upgrade would change.",
+    "held": {
+      "one": "{count} held package is kept back",
+      "other": "{count} held packages are kept back"
+    },
+    "ignored": {
+      "one": "{count} ignored",
+      "other": "{count} ignored"
+    },
+    "settings": "Settings",
+    "stale": "The last check failed, so the list may be out of date: {message}",
+    "title": "Void Linux updates",
+    "unsupported_title": "XBPS not found",
+    "up_to_date_detail": "Nothing to update. Checks keep running in the background.",
+    "upgrade": "Update system",
+    "xbps_first": "XBPS itself has to be updated first. After that, the remaining updates are listed here.",
+    "xbps_warning": "XBPS reported a problem: {message}"
+  },
+  "plural_rule": "one_other",
+  "settings": {
+    "check_interval": {
+      "description": "How often to look for updates. Set to 0 to check only at startup, on request (right click on the widget, the refresh button, IPC) and after packages change.",
+      "label": "Check interval (minutes)"
+    },
+    "elevation": {
+      "description": "How the upgrade in the terminal gets root privileges. Auto picks the first of sudo, doas and pkexec found on PATH.",
+      "label": "Run the upgrade with",
+      "options": {
+        "auto": "Auto",
+        "doas": "doas",
+        "pkexec": "pkexec",
+        "sudo": "sudo"
+      }
+    },
+    "glyph": {
+      "description": "Glyph shown in the bar.",
+      "label": "Icon"
+    },
+    "hide_when_updated": {
+      "description": "Hide the widget while there is nothing to update. It still shows up when a check fails.",
+      "label": "Hide when up to date"
+    },
+    "ignored_packages": {
+      "description": "Packages left out of the count and the notifications. Shell-style wildcards work, e.g. linux*. xbps-install -Su still upgrades them; use xbps-pkgdb -m hold to really keep a package back.",
+      "label": "Ignored packages"
+    },
+    "notify": {
+      "description": "Show a notification when updates appear that were not announced before. While announced updates are still pending, newer ones are announced at most every 6 hours.",
+      "label": "Notify about new updates"
+    },
+    "notify_threshold": {
+      "description": "Only notify once at least this many updates are pending.",
+      "label": "Minimum updates for a notification"
+    },
+    "sync_repos": {
+      "description": "Download the current repository index into memory on every check (xbps-install -M, no root needed). When off, only the local cache is read, which is as fresh as the last xbps-install -S run as root.",
+      "label": "Fetch a fresh repository index"
+    },
+    "update_command": {
+      "description": "Replaces the built-in command (e.g. sudo xbps-install -Su). Runs with sh in a terminal. Leave empty for the default.",
+      "label": "Custom upgrade command"
+    }
+  },
+  "status": {
+    "checking": "Checking for updates…",
+    "unsupported": "xbps-install was not found. This plugin only works on Void Linux.",
+    "up_to_date": "System is up to date"
+  },
+  "summary": {
+    "more": "and {count} more"
+  },
+  "terminal": {
+    "close": "Press Enter to close this window…",
+    "done": "✔ Upgrade finished.",
+    "failed": "✘ The upgrade did not finish. See the output above.",
+    "title": "XBPS system upgrade"
+  },
+  "tile": {
+    "checking": "Checking…",
+    "error": "Check failed",
+    "unsupported": "XBPS not found",
+    "up_to_date": "Up to date",
+    "updates": {
+      "one": "{count} update",
+      "other": "{count} updates"
+    }
+  },
+  "tooltip": {
+    "checked": "Checked at",
+    "download": "Download",
+    "error": "Last check failed",
+    "status": "Status",
+    "updates": "Updates",
+    "warning": "XBPS warning",
+    "xbps_first": "updated first"
+  },
+  "units": {
+    "b": "B",
+    "decimal": ".",
+    "gib": "GiB",
+    "kib": "KiB",
+    "mib": "MiB",
+    "tib": "TiB"
+  }
+}

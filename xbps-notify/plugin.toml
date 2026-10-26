@@ -1,0 +1,120 @@
+id = "gluow3377/xbps-notify"
+name = "XBPS Update Notifier"
+# MAJOR.MINOR.PATCH. Noctalia offers an update when the version in catalog.toml
+# differs from the installed one, so bump it in both files with every change.
+version = "1.0.0"
+# Level 26 (Noctalia 5.0.0-beta.9) brings noctalia.getSetting(), used by the panel.
+plugin_api = 26
+author = "gluow3377"
+license = "MIT"
+icon = "package"
+description = "Notifies when Void Linux (XBPS) updates are available and runs the upgrade in a terminal."
+tags = ["bar", "panel", "service", "shortcut", "system", "void"]
+# Metadata only. sudo, doas and pkexec are alternatives: the upgrade needs one of them.
+dependencies = ["xbps-install", "xbps-query", "sudo", "doas", "pkexec"]
+
+# Minutes between checks; 0 checks only at startup, on request and after
+# packages change.
+[[setting]]
+key = "check_interval"
+type = "int"
+label_key = "settings.check_interval.label"
+description_key = "settings.check_interval.description"
+default = 60
+min = 0
+max = 1440
+
+# Fetch the repository index into memory on every check (xbps-install -M).
+[[setting]]
+key = "sync_repos"
+type = "bool"
+label_key = "settings.sync_repos.label"
+description_key = "settings.sync_repos.description"
+default = true
+
+[[setting]]
+key = "notify"
+type = "bool"
+label_key = "settings.notify.label"
+description_key = "settings.notify.description"
+default = true
+
+[[setting]]
+key = "notify_threshold"
+type = "int"
+label_key = "settings.notify_threshold.label"
+description_key = "settings.notify_threshold.description"
+default = 1
+min = 1
+max = 500
+visible_when = { key = "notify", values = ["true"] }
+
+# Packages left out of the count and the notifications; "*" wildcards work.
+[[setting]]
+key = "ignored_packages"
+type = "string_list"
+label_key = "settings.ignored_packages.label"
+description_key = "settings.ignored_packages.description"
+default = []
+
+# How the upgrade gets root; "auto" picks the first of sudo, doas and pkexec found.
+[[setting]]
+key = "elevation"
+type = "select"
+label_key = "settings.elevation.label"
+description_key = "settings.elevation.description"
+default = "auto"
+options = [
+  { value = "auto", label_key = "settings.elevation.options.auto" },
+  { value = "sudo", label_key = "settings.elevation.options.sudo" },
+  { value = "doas", label_key = "settings.elevation.options.doas" },
+  { value = "pkexec", label_key = "settings.elevation.options.pkexec" },
+]
+
+# When not empty, replaces the built-in upgrade command; runs with sh in a terminal.
+[[setting]]
+key = "update_command"
+type = "string"
+label_key = "settings.update_command.label"
+description_key = "settings.update_command.description"
+default = ""
+advanced = true
+
+# Background checks, notifications and the upgrade.
+[[service]]
+id = "service"
+entry = "service.luau"
+
+# Bar widget with the number of pending updates.
+[[widget]]
+id = "widget"
+entry = "widget.luau"
+
+  # Settings of this bar widget only, edited in the widget's own settings.
+  [[widget.setting]]
+  key = "glyph"
+  type = "glyph"
+  label_key = "settings.glyph.label"
+  description_key = "settings.glyph.description"
+  default = "package"
+
+  [[widget.setting]]
+  key = "hide_when_updated"
+  type = "bool"
+  label_key = "settings.hide_when_updated.label"
+  description_key = "settings.hide_when_updated.description"
+  default = false
+
+# Update panel, opened from the widget, the tile or a keybind.
+[[panel]]
+id = "panel"
+entry = "panel.luau"
+width = 460
+height = 560
+placement = "attached"
+open_near_click = true
+
+# Control-center tile.
+[[shortcut]]
+id = "shortcut"
+entry = "shortcut.luau"
